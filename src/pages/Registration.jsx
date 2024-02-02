@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
+  const navigate = useNavigate();
   // State to store user input for registration
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,6 +13,9 @@ function Registration() {
     e.preventDefault();
     // Here you can implement the logic for registering the user with the provided credentials
     console.log("Registering user with:", { email, password });
+    if (email) {
+      navigate("/login");
+    }
     // Clear input fields after submission
     setEmail("");
     setPassword("");
