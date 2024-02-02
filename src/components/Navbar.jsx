@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ActiveLink from "./ActiveLink";
 
 const Navbar = () => {
-//   const navigate = useNavigate();
-//   const location = useLocation();
+  //   const navigate = useNavigate();
+  //   const location = useLocation();
+  const [user, setUser] = useState(true);
 
   const signOut = () => {
     logOut()
@@ -18,7 +20,7 @@ const Navbar = () => {
   const menuItems = [
     {
       name: "Login",
-      href: "/",
+      href: "/login",
     },
     {
       name: "Registration",
@@ -36,11 +38,11 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-//   useTitle("Home");
+  //   useTitle("Home");
 
   return (
-    <div className="relative w-full bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+    <div className="mx-auto container ">
+      <div className="row">
         {/* <Link to="/">
           <div className="inline-flex items-center space-x-2">
             <span>
@@ -49,14 +51,11 @@ const Navbar = () => {
             <span className="font-bold">ToyLandia</span>
           </div>
         </Link> */}
-        <div className="hidden lg:block ml-auto">
-          <ul className="inline-flex space-x-8">
+        <div className="col text-end ">
+          <ul className="nav d-flex justify-content-end gap-5">
             {menuItems.map((item) => (
-              <li key={item.name}>
-                <ActiveLink
-                  to={item.href}
-                  className="text-sm font-semibold text-gray-800 hover:text-gray-900 uppercase"
-                >
+              <li key={item.name} className="nav-item">
+                <ActiveLink to={item.href} className="nav-link ">
                   {item.name}
                 </ActiveLink>
               </li>
@@ -64,7 +63,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {user ? (
+        {/* {user ? (
           <>
             <img
               className="w-[40px] ml-auto rounded-full hidden lg:block"
@@ -95,12 +94,12 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-        )}
+        )} */}
 
-        <div className="lg:hidden">
+        {/* <div className="lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
-        </div>
-        {isMenuOpen && (
+        </div> */}
+        {/* {isMenuOpen && (
           <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
             <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
               <div className="px-5 pb-6 pt-5">
@@ -173,7 +172,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
