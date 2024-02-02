@@ -54,8 +54,11 @@ const Navbar = () => {
         <div className="col text-end ">
           <ul className="nav d-flex justify-content-end gap-5">
             {menuItems.map((item) => (
-              <li key={item.name} className="nav-item">
-                <ActiveLink to={item.href} className="nav-link ">
+              <li key={item.name} className="nav-item link-underline-opacity-0">
+                <ActiveLink
+                  to={item.href}
+                  className="nav-link link-underline-opacity-0"
+                >
                   {item.name}
                 </ActiveLink>
               </li>
