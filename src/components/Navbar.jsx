@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const location = useLocation();
+//   const navigate = useNavigate();
+//   const location = useLocation();
 
   const signOut = () => {
     logOut()
@@ -36,19 +36,19 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  useTitle("Home");
+//   useTitle("Home");
 
   return (
     <div className="relative w-full bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-        <Link to="/">
+        {/* <Link to="/">
           <div className="inline-flex items-center space-x-2">
             <span>
               <img className="w-[60px]" src={logo} alt="" />
             </span>
             <span className="font-bold">ToyLandia</span>
           </div>
-        </Link>
+        </Link> */}
         <div className="hidden lg:block ml-auto">
           <ul className="inline-flex space-x-8">
             {menuItems.map((item) => (
