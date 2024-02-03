@@ -1,25 +1,63 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// Registration page
 function Registration() {
   const navigate = useNavigate();
-  // State to store user input for registration
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Function to handle form submission
+  // State to manage form data
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  // Input change handler to update form data state
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can implement the logic for registering the user with the provided credentials
-    console.log("Registering user with:", { email, password });
-    if (email) {
-      navigate("/login");
+    const { email, password, confirmPassword } = formData;
+
+    // Validate email
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
     }
+
+    // Validate password
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    // Handle form submission
+    console.log("Registering user with:", formData);
+    navigate("/login");
+
     // Clear input fields after submission
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+    setFormData({
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
+
+  // Email validation function
+  const isValidEmail = (email) => {
+    // Regex pattern to validate email format
+    return /\S+@\S+\.\S+/.test(email);
   };
 
   return (
@@ -30,6 +68,38 @@ function Registration() {
           <p>Enter your information to create an account</p>
         </div>
         <form onSubmit={handleSubmit} className="mt-5">
+          {/* Input fields for first name and last name */}
+          <div className="d-flex gap-2">
+            <div className="mb-3 w-100 ">
+              <label htmlFor="firstname" className="form-label">
+                First Name:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="firstname"
+                name="firstname"
+                value={formData.firstname}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3 w-100">
+              <label htmlFor="lastname" className="form-label">
+                Last Name:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="lastname"
+                name="lastname"
+                value={formData.lastname}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          {/* Input fields for email, password, and confirm password */}
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email:
@@ -38,8 +108,9 @@ function Registration() {
               type="email"
               className="form-control"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -51,8 +122,9 @@ function Registration() {
               type="password"
               className="form-control"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               required
             />
           </div>
@@ -64,16 +136,19 @@ function Registration() {
               type="password"
               className="form-control"
               id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
               required
             />
           </div>
+          {/* Register button */}
           <div className="d-grid mt-4">
             <button type="submit" className="btn btn-dark">
               Register
             </button>
           </div>
+          {/* Link to login page */}
           <p className="text-center mt-4">
             Already have an account?{" "}
             <Link className="text-dark" to="/login">
