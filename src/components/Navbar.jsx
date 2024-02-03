@@ -4,9 +4,10 @@ import ActiveLink from "./ActiveLink";
 const Navbar = () => {
   // Array of menu items with their names and corresponding href links
   const menuItems = [
+  
     {
       name: "Login",
-      href: "/login",
+      href: "/",
     },
     {
       name: "Registration",

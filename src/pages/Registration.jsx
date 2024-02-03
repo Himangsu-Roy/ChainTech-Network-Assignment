@@ -42,7 +42,7 @@ function Registration() {
 
     // Handle form submission
     console.log("Registering user with:", formData);
-    navigate("/login");
+    navigate("/");
 
     // Clear input fields after submission
     setFormData({
@@ -151,7 +151,7 @@ function Registration() {
           {/* Link to login page */}
           <p className="text-center mt-4">
             Already have an account?{" "}
-            <Link className="text-dark" to="/login">
+            <Link className="text-dark" to="/">
               Login
             </Link>{" "}
           </p>

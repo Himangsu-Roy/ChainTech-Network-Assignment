@@ -12,11 +12,10 @@ const router = createBrowserRouter([
     path: "/",
     // Element to be rendered for this route
     element: <Layout />,
-    // Nested routes configuration
     children: [
       {
         // Child route for login page
-        path: "login",
+        path: "/",
         // Element to be rendered for this route
         element: <Login />,
       },
